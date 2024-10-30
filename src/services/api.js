@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL || 'https://gana-como-loco-back.vercel.app/api';
 
 export const login = async (correo, password) => {
   const response = await axios.post(`${API_URL}/auth/login`, { correo, password });
