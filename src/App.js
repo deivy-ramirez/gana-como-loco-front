@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Game from './components/Game';
@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Switch>
+        <Routes>
           <Route exact path="/" component={isAuthenticated ? Game : Login} />
           <Route path="/register" component={Register} />
           <Route path="/game" component={isAuthenticated ? Game : Login} />
@@ -22,7 +22,7 @@ function App() {
             path="/admin" 
             render={() => isAdmin ? <AdminPanel /> : <Redirect to="/admin-login" />} 
           />
-        </Switch>
+        </Routes>
       </div>
     </Router>
   );
