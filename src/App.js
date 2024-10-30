@@ -13,10 +13,10 @@ function App() {
       <div className="App">
         <h1>Bienvenido a Gana como Loco</h1>
         <Routes>
-          <Route path="/" element={isAuthenticated ? <Navigate to="/login" /> : <Login />} />
+          <Route path="/" element={isAuthenticated ? <Navigate to="/game" /> : <Login />} />
           <Route path="/register" element={<Register />} />
           <Route 
-            path="/login" 
+            path="/game" 
             element={isAuthenticated ? <Game /> : <Navigate to="/" />} 
           />
         </Routes>
