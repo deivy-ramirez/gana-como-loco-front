@@ -13,6 +13,7 @@ function App() {
       <div className="App">
         <h1>Bienvenido a Gana como Loco</h1>
         <Routes>
+          <Route index element={<Login />} />
           <Route path="/" element={isAuthenticated ? <Navigate to="/game" /> : <Login />} />
           <Route path="/register" element={<Register />} />
           <Route 
