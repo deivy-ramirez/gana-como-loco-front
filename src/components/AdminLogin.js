@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { adminLogin } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('https://gana-como-loco-back.vercel.app/api/auth/admin-login', { username, password });
       adminLogin(response.data.adminKey);
-      history.push('/admin');
+      navigate('/admin');
     } catch (err) {
       setError('Credenciales inválidas');
     }
