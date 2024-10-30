@@ -5,20 +5,20 @@ const AdminPanel = () => {
   const [codes, setCodes] = useState([]);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const fetchCodes = async () => {
-      try {
-        const adminKey = localStorage.getItem('adminKey'); // Asume que guardas la clave de admin en localStorage
-        const response = await axios.get('https://gana-como-loco-back.vercel.app/api/game/all-codes', {
-          headers: { 'x-admin-key': adminKey }
-        });
-        setCodes(response.data);
-      } catch (err) {
-        setError('Error al obtener los códigos');
-        console.error(err);
-      }
-    };
+  const fetchCodes = async () => {
+    try {
+      const adminKey = localStorage.getItem('adminKey'); // Asume que guardas la clave de admin en localStorage
+      const response = await axios.get('https://gana-como-loco-back.vercel.app/api/game/all-codes', {
+        headers: { 'x-admin-key': adminKey }
+      });
+      setCodes(response.data);
+    } catch (err) {
+      setError('Error al obtener los códigos');
+      console.error(err);
+    }
+  };
 
+  useEffect(() => {
     fetchCodes();
   }, []);
 
