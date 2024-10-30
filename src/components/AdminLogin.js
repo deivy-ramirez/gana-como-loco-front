@@ -13,7 +13,7 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://tu-backend-url.vercel.app/api/auth/admin-login', { username, password });
+      const response = await axios.post('https://gana-como-loco-back.vercel.app/api/auth/admin-login', { username, password });
       adminLogin(response.data.adminKey);
       history.push('/admin');
     } catch (err) {
