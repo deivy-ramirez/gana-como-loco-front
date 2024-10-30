@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Game from './components/Game';
@@ -14,13 +14,13 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/" component={isAuthenticated ? Game : Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/game" component={isAuthenticated ? Game : Login} />
-          <Route path="/admin-login" component={AdminLogin} />
+          <Route path="/" element={isAuthenticated ? <Game /> : <Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/game" element={isAuthenticated ? <Game /> : <Login />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
           <Route 
             path="/admin" 
-            render={() => isAdmin ? <AdminPanel /> : <Redirect to="/admin-login" />} 
+            element={isAdmin ? <AdminPanel /> : <Navigate to="/admin-login" />} 
           />
         </Routes>
       </div>
