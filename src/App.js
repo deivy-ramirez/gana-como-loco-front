@@ -3,24 +3,21 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Login from './components/Login';
 import Register from './components/Register';
 import Game from './components/Game';
-import AdminPanel from './components/AdminPanel';
-import AdminLogin from './components/AdminLogin';
 import { useAuth } from './context/AuthContext';
 
 function App() {
-  const { isAuthenticated, isAdmin } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
     <Router>
       <div className="App">
+        <h1>Bienvenido a Gana como Loco</h1>
         <Routes>
-          <Route path="/" element={isAuthenticated ? <Game /> : <Login />} />
+          <Route path="/" element={isAuthenticated ? <Navigate to="/game" /> : <Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/game" element={isAuthenticated ? <Game /> : <Login />} />
-          <Route path="/admin-login" element={<AdminLogin />} />
           <Route 
-            path="/admin" 
-            element={isAdmin ? <AdminPanel /> : <Navigate to="/admin-login" />} 
+            path="/game" 
+            element={isAuthenticated ? <Game /> : <Navigate to="/" />} 
           />
         </Routes>
       </div>
