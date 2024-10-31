@@ -1,10 +1,11 @@
+// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Game from './components/Game';
 import AdminPanel from './components/AdminPanel';
-import { useAuth } from './context/AuthContext';
+import AdminRegister from './components/AdminRegister'; // Nuevo componente
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -22,6 +23,7 @@ function App() {
             element={isAuthenticated ? <Game /> : <Navigate to="/" />} 
           />
           <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/admin/register" element={<AdminRegister />} /> {/* Nueva ruta */}
         </Routes>
       </div>
     </Router>

@@ -22,6 +22,11 @@ export const loginAdmin = async (username, password) => {
   return response.data;
 };
 
+export const registerAdmin = async (adminData) => {
+  const response = await axios.post(`${API_URL}/admin/create-admin`, adminData);
+  return response.data;
+};
+
 export const getUsers = async (username, password) => {
   const response = await axios.get(`${API_URL}/admin/users`, {
     headers: { username, password }

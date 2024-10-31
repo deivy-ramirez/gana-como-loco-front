@@ -1,6 +1,6 @@
 // src/components/AdminPanel.js
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { loginAdmin, getUsers, getCodes, getStats } from '../services/api';
 
 function AdminPanel() {
@@ -68,6 +68,11 @@ function AdminPanel() {
       <h2>Panel de Administrador</h2>
       <button onClick={() => navigate('/')}>Volver al Inicio</button>
 
+      {/* Enlace para registrar un nuevo administrador */}
+      <Link to="/admin/register">
+        <button>Registrar Nuevo Administrador</button>
+      </Link>
+
       <h3>Estadísticas</h3>
       {stats && (
         <ul>
@@ -115,12 +120,12 @@ function AdminPanel() {
         <tbody>
           {codes.map((code) => (
             <tr key={code.codigo}>
-              <td>{code.codigo}</td>
+              <td>{code .codigo}</td>
               <td>{code.premio}</td>
-              <td>{code.ganador}</td>
-              <td>{code.usuario}</td>
-              <td>{code.cedula}</td>
-              <td>{new Date(code.fechaUso).toLocaleString()}</td>
+              <td>{code.ganador ? 'Sí' : 'No'}</td>
+              <td>{code.usuario.nombre}</td>
+              <td>{code.usuario.cedula}</td>
+              <td>{new Date(code.fechaUso).toLocaleDateString()}</td>
             </tr>
           ))}
         </tbody>
