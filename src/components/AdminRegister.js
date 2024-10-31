@@ -5,6 +5,7 @@ import { registerAdmin } from '../services/api';
 
 function AdminRegister() {
   const [formData, setFormData] = useState({
+    username: '', // Añade el campo username
     nombre: '',
     cedula: '',
     correo: '',
@@ -12,6 +13,7 @@ function AdminRegister() {
     fechaNacimiento: ''
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,12 +26,20 @@ function AdminRegister() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
+
     try {
-      await registerAdmin(formData);
+      console.log('Enviando datos:', formData); // Para debugging
+      const response = await registerAdmin(formData);
+      console.log('Respuesta:', response); // Para debugging
       alert('Administrador registrado exitosamente');
       navigate('/admin');
     } catch (err) {
-      setError('Error en el registro del administrador. Por favor, intenta de nuevo.');
+      console.error('Error completo:', err); // Para debugging
+      setError(err.message || 'Error en el registro del administrador');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -38,6 +48,14 @@ function AdminRegister() {
       <h2>Registro de Administrador</h2>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          placeholder="Nombre de usuario"
+          required
+        />
         <input
           type="text"
           name="nombre"
@@ -77,7 +95,9 @@ function AdminRegister() {
           onChange={handleChange}
           required
         />
-        <button type="submit">Registrar Administrador</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Registrando...' : 'Registrar Administrador'}
+        </button>
       </form>
     </div>
   );

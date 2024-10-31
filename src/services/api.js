@@ -23,8 +23,15 @@ export const loginAdmin = async (username, password) => {
 };
 
 export const registerAdmin = async (adminData) => {
-  const response = await axios.post(`${API_URL}/admin/create-admin`, adminData);
-  return response.data;
+  try {
+    const response = await axios.post(`${API_URL}/admin/register`, adminData);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(error.response.data.message || 'Error al registrar administrador');
+    }
+    throw error;
+  }
 };
 
 export const getUsers = async (username, password) => {
