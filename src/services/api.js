@@ -16,3 +16,29 @@ export const verifyCode = async (codigo, userId) => {
   const response = await axios.post(`${API_URL}/game/verify-code`, { codigo, userId });
   return response.data;
 };
+
+export const loginAdmin = async (username, password) => {
+  const response = await axios.post(`${API_URL}/admin/login`, { username, password });
+  return response.data;
+};
+
+export const getUsers = async (username, password) => {
+  const response = await axios.get(`${API_URL}/admin/users`, {
+    headers: { username, password }
+  });
+  return response.data;
+};
+
+export const getCodes = async (username, password) => {
+  const response = await axios.get(`${API_URL}/admin/codes`, {
+    headers: { username, password }
+  });
+  return response.data;
+};
+
+export const getStats = async (username, password) => {
+  const response = await axios.get(`${API_URL}/admin/stats`, {
+    headers: { username, password }
+  });
+  return response.data;
+};

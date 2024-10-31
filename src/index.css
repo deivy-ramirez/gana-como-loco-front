@@ -55,3 +55,45 @@ button:hover {
   margin-top: 20px;
   font-weight: bold;
 }
+
+.admin-login,
+.admin-panel {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.admin-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.admin-panel th,
+.admin-panel td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.admin-panel th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.admin-panel h3 {
+  margin-top: 20px;
+}
+
+.admin-panel ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.admin-panel li {
+  margin-bottom: 10px;
+}
+
+.admin-panel button {
+  margin-bottom: 20px;
+}

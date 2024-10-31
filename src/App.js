@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Login from './components/Login';
 import Register from './components/Register';
 import Game from './components/Game';
+import AdminPanel from './components/AdminPanel';
 import { useAuth } from './context/AuthContext';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             path="/game" 
             element={isAuthenticated ? <Game /> : <Navigate to="/" />} 
           />
+          <Route path="/admin" element={<AdminPanel />} />
         </Routes>
       </div>
     </Router>
