@@ -61,9 +61,12 @@ export const getCodes = async () => {
   }
 };
 
-export const getStats = async (username, password) => {
-  const response = await axios.get(`${API_URL}/admin/stats`, {
-    headers: { username, password }
-  });
-  return response.data;
+export const getAdminStats = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/admin/stats`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener estadísticas:', error);
+    throw error;
+  }
 };
