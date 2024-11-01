@@ -206,8 +206,8 @@ function AdminPanel() {
                       <tr key={code._id}>
                         <td>{code.codigo}</td>
                         <td>${code.premio.toLocaleString()}</td>
-                        <td>{code.usadoPor?.nombre || 'N/A'}</td>
-                        <td>{code.usadoPor?.cedula || 'N/A'}</td>
+                        <td>{code.usuario ? code.usuario.nombre : 'N/A'}</td>
+                        <td>{code.usuario ? code.usuario.cedula : 'N/A'}</td>
                         <td>{code.fechaUso ? new Date(code.fechaUso).toLocaleDateString() : 'N/A'}</td>
                       </tr>
                     ))}
@@ -215,7 +215,7 @@ function AdminPanel() {
                 </table>
               </div>
             </section>
-          )}
+)}
         </main>
       )}
     </div>
