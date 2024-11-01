@@ -41,18 +41,24 @@ export const registerAdmin = async (adminData) => {
   }
 };
 
-export const getUsers = async (username, password) => {
-  const response = await axios.get(`${API_URL}/admin/users`, {
-    headers: { username, password }
-  });
-  return response.data;
+export const getUsers = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/admin/users`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener usuarios:', error);
+    throw error;
+  }
 };
 
-export const getCodes = async (username, password) => {
-  const response = await axios.get(`${API_URL}/admin/codes`, {
-    headers: { username, password }
-  });
-  return response.data;
+export const getCodes = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/admin/codes`);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener códigos:', error);
+    throw error;
+  }
 };
 
 export const getStats = async (username, password) => {
