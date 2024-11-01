@@ -16,10 +16,12 @@ function AdminPanel() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await loginAdmin({ username, password });
+      const result = await loginAdmin({ username, password });
+      console.log('Login successful:', result);
       setIsLoggedIn(true);
       fetchData();
     } catch (err) {
+      console.error('Login error:', err);
       setError('Credenciales inválidas');
     }
   };

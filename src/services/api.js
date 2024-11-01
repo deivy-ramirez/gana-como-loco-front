@@ -19,12 +19,12 @@ export const verifyCode = async (codigo, userId) => {
 
 export const loginAdmin = async (credentials) => {
   try {
+    console.log('Attempting login with:', credentials);
     const response = await axios.post(`${API_URL}/admin/login`, credentials);
+    console.log('Login response:', response.data);
     return response.data;
   } catch (error) {
-    if (error.response) {
-      throw new Error(error.response.data.message || 'Error en el inicio de sesión');
-    }
+    console.error('Login error:', error.response ? error.response.data : error.message);
     throw error;
   }
 };
