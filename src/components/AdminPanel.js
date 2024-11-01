@@ -16,7 +16,7 @@ function AdminPanel() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await loginAdmin(username, password);
+      await loginAdmin({ username, password });
       setIsLoggedIn(true);
       fetchData();
     } catch (err) {
