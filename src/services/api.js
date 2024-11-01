@@ -17,9 +17,16 @@ export const verifyCode = async (codigo, userId) => {
   return response.data;
 };
 
-export const loginAdmin = async (username, password) => {
-  const response = await axios.post(`${API_URL}/admin/login`, { username, password });
-  return response.data;
+export const loginAdmin = async (credentials) => {
+  try {
+    const response = await axios.post(`${API_URL}/admin/login`, credentials);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(error.response.data.message || 'Error en el inicio de sesión');
+    }
+    throw error;
+  }
 };
 
 export const registerAdmin = async (adminData) => {
