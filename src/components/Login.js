@@ -15,6 +15,7 @@ function Login() {
     try {
       const data = await login(correo, password);
       setAuthData(data);
+      localStorage.setItem('authData', JSON.stringify(data));
       navigate('/game');
     } catch (err) {
       setError('Credenciales inválidas');

@@ -11,6 +11,7 @@ function Game() {
     e.preventDefault();
     try {
       const data = await verifyCode(codigo, userId);
+      console.log("user_auth_data", data)
       setResultado(`¡Felicidades! Ganaste ${data.premio} pesos.`);
     } catch (error) {
       setResultado('Código inválido o ya usado.');
