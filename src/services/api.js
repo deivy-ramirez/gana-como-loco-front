@@ -12,9 +12,34 @@ export const register = async (userData) => {
   return response.data;
 };
 
-export const verifyCode = async (codigo, userId) => {
-  const response = await axios.post(`${API_URL}/game/verify-code`, { codigo, userId });
-  return response.data;
+export const verificarCodigo = async (codigo) => {
+  try {
+    // Obtener el userId del localStorage o de donde lo tengas almacenado
+    const userId = localStorage.getItem('userId'); // o como lo tengas guardado
+
+    const response = await fetch('/api/game/verify-code', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        codigo: codigo,
+        userId: userId
+      })
+    });
+
+    const data = await response.json();
+    
+    if (response.ok) {
+      // Manejar respuesta exitosa
+      console.log('Premio:', data.premio);
+    } else {
+      // Manejar error
+      console.error('Error:', data.message);
+    }
+  } catch (error) {
+    console.error('Error al verificar código:', error);
+  }
 };
 
 export const loginAdmin = async (credentials) => {
