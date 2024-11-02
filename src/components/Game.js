@@ -11,6 +11,7 @@ function Game() {
     try {
     const authData = localStorage.getItem('authData');
     const userId = authData.userId;
+    alert(userId)
       const data = await verifyCode(codigo, userId);
       setResultado(`¡Felicidades! Ganaste ${data.premio} pesos.`);
     } catch (error) {
