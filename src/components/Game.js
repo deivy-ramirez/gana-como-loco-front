@@ -9,9 +9,8 @@ function Game() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    const authData = localStorage.getItem('authData');
+    const authData = JSON.parse(localStorage.getItem('authData'));
     const userId = authData.userId;
-    alert(userId)
       const data = await verifyCode(codigo, userId);
       setResultado(`¡Felicidades! Ganaste ${data.premio} pesos.`);
     } catch (error) {
