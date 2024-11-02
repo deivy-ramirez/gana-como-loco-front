@@ -5,13 +5,13 @@ import { useAuth } from '../context/AuthContext';
 function Game() {
   const [codigo, setCodigo] = useState('');
   const [resultado, setResultado] = useState('');
-  const { userId } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+    const authData = localStorage.getItem('authData');
+    const userId = authData.userId;
       const data = await verifyCode(codigo, userId);
-      console.log("user_auth_data", data)
       setResultado(`¡Felicidades! Ganaste ${data.premio} pesos.`);
     } catch (error) {
       setResultado('Código inválido o ya usado.');
