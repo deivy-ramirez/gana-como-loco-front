@@ -64,7 +64,7 @@ export default function AdminPanel() {
 
   if (!isLoggedIn) {
     return (
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mx-auto mt-10">
         <h2 className="text-2xl font-bold mb-6 text-center text-purple-800">Acceso Administrativo</h2>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form onSubmit={handleLogin} className="space-y-4">
@@ -97,150 +97,156 @@ export default function AdminPanel() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
-      <header className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-purple-800">Panel de Administración</h1>
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
-        >
-          Cerrar Sesión
-        </button>
-      </header>
+    <div className="bg-gray-100 min-h-screen p-4">
+      <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+        <header className="bg-purple-600 text-white p-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">Panel de Administración</h1>
+          <button
+            onClick={handleLogout}
+            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+          >
+            Cerrar Sesión
+          </button>
+        </header>
 
-      <nav className="flex mb-6 border-b">
-        <button
-          className={`px-4 py-2 ${
-            activeTab === 'dashboard' ? 'border-b-2 border-purple-600 text-purple-600' : 'text-gray-500 hover:text-purple-600'
-          }`}
-          onClick={() => setActiveTab('dashboard')}
-        >
-          Dashboard
-        </button>
-        <button
-          className={`px-4 py-2 ${
-            activeTab === 'users' ? 'border-b-2 border-purple-600 text-purple-600' :
-            'text-gray-500 hover:text-purple-600'
-          }`}
-          onClick={() => setActiveTab('users')}
-        >
-          Usuarios
-        </button>
-        <button
-          className={`px-4 py-2 ${
-            activeTab === 'codes' ? 'border-b-2 border-purple-600 text-purple-600' :
-            'text-gray-500 hover:text-purple-600'
-          }`}
-          onClick={() => setActiveTab('codes')}
-        >
-          Códigos
-        </button>
-      </nav>
+        <nav className="flex border-b bg-gray-50">
+          <button
+            className={`px-4 py-2 ${
+              activeTab === 'dashboard'
+                ? 'border-b-2 border-purple-600 text-purple-600'
+                : 'text-gray-500 hover:text-purple-600'
+            }`}
+            onClick={() => setActiveTab('dashboard')}
+          >
+            Dashboard
+          </button>
+          <button
+            className={`px-4 py-2 ${
+              activeTab === 'users'
+                ? 'border-b-2 border-purple-600 text-purple-600'
+                : 'text-gray-500 hover:text-purple-600'
+            }`}
+            onClick={() => setActiveTab('users')}
+          >
+            Usuarios
+          </button>
+          <button
+            className={`px-4 py-2 ${
+              activeTab === 'codes'
+                ? 'border-b-2 border-purple-600 text-purple-600'
+                : 'text-gray-500 hover:text-purple-600'
+            }`}
+            onClick={() => setActiveTab('codes')}
+          >
+            Códigos
+          </button>
+        </nav>
 
-      {loading ? (
-        <div className="text-center py-8">Cargando...</div>
-      ) : (
-        <main>
-          {activeTab === 'dashboard' && stats && (
-            <section className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              <div className="bg-purple-100 p-4 rounded-lg">
-                <h3 className="text-lg font-semibold text-purple-800">Usuarios Totales</h3>
-                <p className="text-3xl font-bold text-purple-600">{stats.totalUsers}</p>
-              </div>
-              <div className="bg-blue-100 p-4 rounded-lg">
-                <h3 className="text-lg font-semibold text-blue-800">Códigos Totales</h3>
-                <p className="text-3xl font-bold text-blue-600">{stats.totalCodes}</p>
-              </div>
-              <div className="bg-green-100 p-4 rounded-lg">
-                <h3 className="text-lg font-semibold text-green-800">Códigos Usados</h3>
-                <p className="text-3xl font-bold text-green-600">{stats.usedCodes}</p>
-              </div>
-              <div className="bg-yellow-100 p-4 rounded-lg">
-                <h3 className="text-lg font-semibold text-yellow-800">Total en Premios</h3>
-                <p className="text-3xl font-bold text-yellow-600">${stats.totalPrizeAmount.toLocaleString()}</p>
-              </div>
-            </section>
-          )}
+        {loading ? (
+          <div className="text-center py-8">Cargando...</div>
+        ) : (
+          <main className="p-6">
+            {activeTab === 'dashboard' && stats && (
+              <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
+                  <h3 className="text-lg font-semibold text-gray-700 mb-2">Usuarios Totales</h3>
+                  <p className="text-3xl font-bold text-purple-600">{stats.totalUsers}</p>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                  <h3 className="text-lg font-semibold text-gray-700 mb-2">Códigos Totales</h3>
+                  <p className="text-3xl font-bold text-blue-600">{stats.totalCodes}</p>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                  <h3 className="text-lg font-semibold text-gray-700 mb-2">Códigos Usados</h3>
+                  <p className="text-3xl font-bold text-green-600">{stats.usedCodes}</p>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
+                  <h3 className="text-lg font-semibold text-gray-700 mb-2">Total en Premios</h3>
+                  <p className="text-3xl font-bold text-yellow-600">${stats.totalPrizeAmount.toLocaleString()}</p>
+                </div>
+              </section>
+            )}
 
-          {activeTab === 'users' && (
-            <section className="overflow-x-auto">
-              <table className="min-w-full bg-white">
-                <thead className="bg-gray-100">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Nombre
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Cédula
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Correo
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Fecha de Registro
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {users.map((user) => (
-                    <tr key={user._id}>
-                      <td className="px-6 py-4 whitespace-nowrap">{user.nombre}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">{user.cedula}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">{user.correo}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {new Date(user.createdAt).toLocaleDateString()}
-                      </td>
+            {activeTab === 'users' && (
+              <section className="overflow-x-auto">
+                <table className="min-w-full bg-white border border-gray-300">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
+                        Nombre
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
+                        Cédula
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
+                        Correo
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
+                        Fecha de Registro
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </section>
-          )}
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {users.map((user) => (
+                      <tr key={user._id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap">{user.nombre}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{user.cedula}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{user.correo}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {new Date(user.createdAt).toLocaleDateString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+            )}
 
-          {activeTab === 'codes' && (
-            <section className="overflow-x-auto">
-              <table className="min-w-full bg-white">
-                <thead className="bg-gray-100">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Código
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Premio
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Usuario
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Cédula
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Fecha de Uso
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {codes.map((code) => (
-                    <tr key={code._id}>
-                      <td className="px-6 py-4 whitespace-nowrap">{code.codigo}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">${code.premio.toLocaleString()}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {code.usuario ? code.usuario.nombre : 'N/A'}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {code.usuario ? code.usuario.cedula : 'N/A'}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {code.fechaUso ? new Date(code.fechaUso).toLocaleDateString() : 'N/A'}
-                      </td>
+            {activeTab === 'codes' && (
+              <section className="overflow-x-auto">
+                <table className="min-w-full bg-white border border-gray-300">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
+                        Código
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
+                        Premio
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
+                        Usuario
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
+                        Cédula
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
+                        Fecha de Uso
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </section>
-          )}
-        </main>
-      )}
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {codes.map((code) => (
+                      <tr key={code._id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap">{code.codigo}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">${code.premio.toLocaleString()}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {code.usuario ? code.usuario.nombre : 'N/A'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {code.usuario ? code.usuario.cedula : 'N/A'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {code.fechaUso ? new Date(code.fechaUso).toLocaleDateString() : 'N/A'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+            )}
+          </main>
+        )}
+      </div>
     </div>
   )
 }
