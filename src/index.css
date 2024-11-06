@@ -68,15 +68,17 @@ button:hover {
 }
 
 .admin-panel table {
-  width: 100%;
+  width: 100%; /* Asegúrate de que ocupe el 100% del contenedor */
+  max-width: 100%; /* Evita que la tabla exceda el ancho del contenedor */
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin: 20px auto; /* Centra la tabla */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Añade sombra para mejorar la estética */
 }
 
 .admin-panel th,
 .admin-panel td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px; /* Aumenta el padding para mejorar la legibilidad */
   text-align: left;
 }
 
@@ -87,6 +89,7 @@ button:hover {
 
 .admin-panel h3 {
   margin-top: 20px;
+  text-align: center; /* Centra el título */
 }
 
 .admin-panel ul {
