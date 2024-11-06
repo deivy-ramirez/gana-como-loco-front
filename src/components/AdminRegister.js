@@ -1,53 +1,49 @@
-// src/components/AdminRegister.js
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { registerAdmin } from '../services/api';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { registerAdmin } from '../services/api'
 
-function AdminRegister() {
+export default function AdminRegister() {
   const [formData, setFormData] = useState({
-    username: '', // Añade el campo username
+    username: '',
     nombre: '',
     cedula: '',
     correo: '',
     password: '',
-    fechaNacimiento: ''
-  });
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+    fechaNacimiento: '',
+  })
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({
+    const { name, value } = e.target
+    setFormData((prevData) => ({
       ...prevData,
-      [name]: value
-    }));
-  };
+      [name]: value,
+    }))
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+    e.preventDefault()
+    setLoading(true)
+    setError('')
 
     try {
-      console.log('Enviando datos:', formData); // Para debugging
-      const response = await registerAdmin(formData);
-      console.log('Respuesta:', response); // Para debugging
-      alert('Administrador registrado exitosamente');
-      navigate('/admin');
+      await registerAdmin(formData)
+      alert('Administrador registrado exitosamente')
+      navigate('/admin')
     } catch (err) {
-      console.error('Error completo:', err); // Para debugging
-      setError(err.message || 'Error en el registro del administrador');
+      setError(err.message || 'Error en el registro del administrador')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
-    <div className="register-container">
-      <h2>Registro de Administrador</h2>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleSubmit}>
+    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <h2 className="text-2xl font-bold mb-6 text-center text-purple-800">Registro de Administrador</h2>
+      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
           name="username"
@@ -55,6 +51,7 @@ function AdminRegister() {
           onChange={handleChange}
           placeholder="Nombre de usuario"
           required
+          className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
         <input
           type="text"
@@ -63,6 +60,7 @@ function AdminRegister() {
           onChange={handleChange}
           placeholder="Nombre completo"
           required
+          className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
         <input
           type="text"
@@ -71,6 +69,7 @@ function AdminRegister() {
           onChange={handleChange}
           placeholder="Cédula"
           required
+          className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
         <input
           type="email"
@@ -79,6 +78,7 @@ function AdminRegister() {
           onChange={handleChange}
           placeholder="Correo electrónico"
           required
+          className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
         <input
           type="password"
@@ -87,6 +87,7 @@ function AdminRegister() {
           onChange={handleChange}
           placeholder="Contraseña"
           required
+          className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
         <input
           type="date"
@@ -94,13 +95,16 @@ function AdminRegister() {
           value={formData.fechaNacimiento}
           onChange={handleChange}
           required
+          className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
-        <button type="submit" disabled={loading}>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition-colors disabled:opacity-50"
+        >
           {loading ? 'Registrando...' : 'Registrar Administrador'}
         </button>
       </form>
     </div>
-  );
+  )
 }
-
-export default AdminRegister;

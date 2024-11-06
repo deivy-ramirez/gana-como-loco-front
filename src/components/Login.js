@@ -1,38 +1,39 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { login } from '../services/api';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
+import { login } from '../services/api'
 
-function Login() {
-  const [correo, setCorreo] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const { setAuthData } = useAuth();
-  const navigate = useNavigate();
+export default function Login() {
+  const [correo, setCorreo] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const { setAuthData } = useAuth()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const data = await login(correo, password);
-      setAuthData(data);
-      localStorage.setItem('authData', JSON.stringify(data));
-      navigate('/game');
+      const data = await login(correo, password)
+      setAuthData(data)
+      localStorage.setItem('authData', JSON.stringify(data))
+      navigate('/game')
     } catch (err) {
-      setError('Credenciales inválidas');
+      setError('Credenciales inválidas')
     }
-  };
+  }
 
   return (
-    <div className="login-container">
-      <h2>Iniciar Sesión</h2>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleSubmit}>
+    <div className="bg-white p-8 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-6 text-center text-purple-800">Iniciar Sesión</h2>
+      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="email"
           value={correo}
           onChange={(e) => setCorreo(e.target.value)}
           placeholder="Correo electrónico"
           required
+          className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
         <input
           type="password"
@@ -40,14 +41,21 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Contraseña"
           required
+          className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
-        <button type="submit">Iniciar Sesión</button>
+        <button
+          type="submit"
+          className="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition-colors"
+        >
+          Iniciar Sesión
+        </button>
       </form>
-      <p>
-        ¿No tienes una cuenta? <Link to="/register">Regístrate aquí</Link>
+      <p className="mt-4 text-center">
+        ¿No tienes una cuenta?{' '}
+        <Link to="/register" className="text-purple-600 hover:underline">
+          Regístrate aquí
+        </Link>
       </p>
     </div>
-  );
+  )
 }
-
-export default Login;
