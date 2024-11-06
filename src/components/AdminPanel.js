@@ -97,8 +97,8 @@ export default function AdminPanel() {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4">
-      <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="bg-gray-100 min-h-screen">
+      <div className="w-full bg-white shadow-lg">
         <header className="bg-purple-600 text-white p-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Panel de Administración</h1>
           <button
@@ -111,7 +111,7 @@ export default function AdminPanel() {
 
         <nav className="flex border-b bg-gray-50">
           <button
-            className={`px-4 py-2 ${
+            className={`px-6 py-3 ${
               activeTab === 'dashboard'
                 ? 'border-b-2 border-purple-600 text-purple-600'
                 : 'text-gray-500 hover:text-purple-600'
@@ -121,7 +121,7 @@ export default function AdminPanel() {
             Dashboard
           </button>
           <button
-            className={`px-4 py-2 ${
+            className={`px-6 py-3 ${
               activeTab === 'users'
                 ? 'border-b-2 border-purple-600 text-purple-600'
                 : 'text-gray-500 hover:text-purple-600'
@@ -131,7 +131,7 @@ export default function AdminPanel() {
             Usuarios
           </button>
           <button
-            className={`px-4 py-2 ${
+            className={`px-6 py-3 ${
               activeTab === 'codes'
                 ? 'border-b-2 border-purple-600 text-purple-600'
                 : 'text-gray-500 hover:text-purple-600'
@@ -169,7 +169,7 @@ export default function AdminPanel() {
 
             {activeTab === 'users' && (
               <section className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-300">
+                <table className="w-full bg-white border border-gray-300">
                   <thead className="bg-gray-50">
                     <tr>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
@@ -204,7 +204,7 @@ export default function AdminPanel() {
 
             {activeTab === 'codes' && (
               <section className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-300">
+                <table className="w-full bg-white border border-gray-300">
                   <thead className="bg-gray-50">
                     <tr>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
