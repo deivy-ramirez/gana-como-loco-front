@@ -62,7 +62,7 @@ button:hover {
 
 .admin-login,
 .admin-panel {
-  max-width: 400px;
+  max-width: 25%;
   margin: 0 auto;
   padding: 20px;
 }
