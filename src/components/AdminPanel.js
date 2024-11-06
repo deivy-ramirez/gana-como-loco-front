@@ -97,21 +97,21 @@ export default function AdminPanel() {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <div className="w-full bg-white shadow-lg">
-        <header className="bg-purple-600 text-white p-4 flex justify-between items-center">
+    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-500">
+      <div className="min-h-screen w-screen bg-white/95">
+        <header className="bg-purple-600 text-white px-8 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">Panel de Administración</h1>
           <button
             onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+            className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-colors"
           >
             Cerrar Sesión
           </button>
         </header>
 
-        <nav className="flex border-b bg-gray-50">
+        <nav className="flex bg-white border-b px-8">
           <button
-            className={`px-6 py-3 ${
+            className={`px-8 py-4 text-lg font-medium ${
               activeTab === 'dashboard'
                 ? 'border-b-2 border-purple-600 text-purple-600'
                 : 'text-gray-500 hover:text-purple-600'
@@ -121,7 +121,7 @@ export default function AdminPanel() {
             Dashboard
           </button>
           <button
-            className={`px-6 py-3 ${
+            className={`px-8 py-4 text-lg font-medium ${
               activeTab === 'users'
                 ? 'border-b-2 border-purple-600 text-purple-600'
                 : 'text-gray-500 hover:text-purple-600'
@@ -131,7 +131,7 @@ export default function AdminPanel() {
             Usuarios
           </button>
           <button
-            className={`px-6 py-3 ${
+            className={`px-8 py-4 text-lg font-medium ${
               activeTab === 'codes'
                 ? 'border-b-2 border-purple-600 text-purple-600'
                 : 'text-gray-500 hover:text-purple-600'
@@ -143,106 +143,112 @@ export default function AdminPanel() {
         </nav>
 
         {loading ? (
-          <div className="text-center py-8">Cargando...</div>
+          <div className="flex justify-center items-center h-[calc(100vh-120px)]">
+            <div className="text-xl">Cargando...</div>
+          </div>
         ) : (
-          <main className="p-6">
+          <main className="p-8">
             {activeTab === 'dashboard' && stats && (
-              <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
-                  <h3 className="text-lg font-semibold text-gray-700 mb-2">Usuarios Totales</h3>
-                  <p className="text-3xl font-bold text-purple-600">{stats.totalUsers}</p>
+              <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-purple-500">
+                  <h3 className="text-xl font-semibold text-gray-700 mb-4">Usuarios Totales</h3>
+                  <p className="text-4xl font-bold text-purple-600">{stats.totalUsers}</p>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                  <h3 className="text-lg font-semibold text-gray-700 mb-2">Códigos Totales</h3>
-                  <p className="text-3xl font-bold text-blue-600">{stats.totalCodes}</p>
+                <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-blue-500">
+                  <h3 className="text-xl font-semibold text-gray-700 mb-4">Códigos Totales</h3>
+                  <p className="text-4xl font-bold text-blue-600">{stats.totalCodes}</p>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
-                  <h3 className="text-lg font-semibold text-gray-700 mb-2">Códigos Usados</h3>
-                  <p className="text-3xl font-bold text-green-600">{stats.usedCodes}</p>
+                <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-500">
+                  <h3 className="text-xl font-semibold text-gray-700 mb-4">Códigos Usados</h3>
+                  <p className="text-4xl font-bold text-green-600">{stats.usedCodes}</p>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
-                  <h3 className="text-lg font-semibold text-gray-700 mb-2">Total en Premios</h3>
-                  <p className="text-3xl font-bold text-yellow-600">${stats.totalPrizeAmount.toLocaleString()}</p>
+                <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-yellow-500">
+                  <h3 className="text-xl font-semibold text-gray-700 mb-4">Total en Premios</h3>
+                  <p className="text-4xl font-bold text-yellow-600">${stats.totalPrizeAmount.toLocaleString()}</p>
                 </div>
               </section>
             )}
 
             {activeTab === 'users' && (
-              <section className="overflow-x-auto">
-                <table className="w-full bg-white border border-gray-300">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
-                        Nombre
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
-                        Cédula
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
-                        Correo
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
-                        Fecha de Registro
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {users.map((user) => (
-                      <tr key={user._id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap">{user.nombre}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">{user.cedula}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">{user.correo}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {new Date(user.createdAt).toLocaleDateString()}
-                        </td>
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div className="overflow-x-auto w-full">
+                  <table className="w-full">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="px-8 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider w-1/4">
+                          Nombre
+                        </th>
+                        <th className="px-8 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider w-1/4">
+                          Cédula
+                        </th>
+                        <th className="px-8 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider w-1/4">
+                          Correo
+                        </th>
+                        <th className="px-8 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider w-1/4">
+                          Fecha de Registro
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </section>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      {users.map((user) => (
+                        <tr key={user._id} className="hover:bg-gray-50">
+                          <td className="px-8 py-4 text-sm text-gray-900">{user.nombre}</td>
+                          <td className="px-8 py-4 text-sm text-gray-900">{user.cedula}</td>
+                          <td className="px-8 py-4 text-sm text-gray-900">{user.correo}</td>
+                          <td className="px-8 py-4 text-sm text-gray-900">
+                            {new Date(user.createdAt).toLocaleDateString()}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             )}
 
             {activeTab === 'codes' && (
-              <section className="overflow-x-auto">
-                <table className="w-full bg-white border border-gray-300">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
-                        Código
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
-                        Premio
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
-                        Usuario
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
-                        Cédula
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">
-                        Fecha de Uso
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {codes.map((code) => (
-                      <tr key={code._id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap">{code.codigo}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">${code.premio.toLocaleString()}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {code.usuario ? code.usuario.nombre : 'N/A'}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {code.usuario ? code.usuario.cedula : 'N/A'}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {code.fechaUso ? new Date(code.fechaUso).toLocaleDateString() : 'N/A'}
-                        </td>
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div className="overflow-x-auto w-full">
+                  <table className="w-full">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="px-8 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+                          Código
+                        </th>
+                        <th className="px-8 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+                          Premio
+                        </th>
+                        <th className="px-8 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+                          Usuario
+                        </th>
+                        <th className="px-8 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+                          Cédula
+                        </th>
+                        <th className="px-8 py-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+                          Fecha de Uso
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </section>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      {codes.map((code) => (
+                        <tr key={code._id} className="hover:bg-gray-50">
+                          <td className="px-8 py-4 text-sm text-gray-900">{code.codigo}</td>
+                          <td className="px-8 py-4 text-sm text-gray-900">${code.premio.toLocaleString()}</td>
+                          <td className="px-8 py-4 text-sm text-gray-900">
+                            {code.usuario ? code.usuario.nombre : 'N/A'}
+                          </td>
+                          <td className="px-8 py-4 text-sm text-gray-900">
+                            {code.usuario ? code.usuario.cedula : 'N/A'}
+                          </td>
+                          <td className="px-8 py-4 text-sm text-gray-900">
+                            {code.fechaUso ? new Date(code.fechaUso).toLocaleDateString() : 'N/A'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             )}
           </main>
         )}
