@@ -32,7 +32,8 @@ export default function Register() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg">
+  <section className='flex items-center justify-center '>
+    <div className="bg-white p-8 rounded-lg shadow-lg md:min-w-[30rem]">
       <h2 className="text-2xl font-bold mb-6 text-center text-purple-800">Registro</h2>
       {error && <p className="text-red-500 text-center mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -94,5 +95,6 @@ export default function Register() {
         </Link>
       </p>
     </div>
+    </section>
   )
 }

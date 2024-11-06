@@ -40,7 +40,8 @@ export default function AdminRegister() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+  <section className='flex items-center justify-center max-w-md'>
+    <div className="bg-white p-8 rounded-lg shadow-lg w-full">
       <h2 className="text-2xl font-bold mb-6 text-center text-purple-800">Registro de Administrador</h2>
       {error && <p className="text-red-500 text-center mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -106,5 +107,6 @@ export default function AdminRegister() {
         </button>
       </form>
     </div>
+    </section>
   )
 }

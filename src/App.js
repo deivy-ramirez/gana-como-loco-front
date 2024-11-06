@@ -13,7 +13,7 @@ export default function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-500 flex flex-col items-center justify-center p-4">
-        <header className="w-full max-w-4xl mx-auto mb-8 flex justify-between items-center">
+        <header className="w-full p-5 mx-auto flex justify-between items-center fixed top-0">
           <Link to="/" className="text-3xl font-bold text-white hover:text-yellow-300 transition-colors">
             Gana como Loco
           </Link>
@@ -26,7 +26,7 @@ export default function App() {
             </Link>
           )}
         </header>
-        <main className="w-full max-w-md">
+        <main className="w-full">
           <Routes>
             <Route index element={<Login />} />
             <Route path="/" element={isAuthenticated ? <Navigate to="/game" /> : <Login />} />
